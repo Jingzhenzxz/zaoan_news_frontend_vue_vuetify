@@ -42,6 +42,7 @@ import {
   createMediaUsingPost,
 } from "@/api/mediaController";
 import { API } from "@/api/types";
+import { useRoute, useRouter } from "vue-router";
 
 const props = defineProps<{ modelValue: boolean }>();
 const emit = defineEmits(["update:modelValue"]);
@@ -54,6 +55,8 @@ const snackbar = ref({
   message: "",
   color: "success",
 });
+const router = useRouter();
+const route = useRoute();
 
 watch(
   () => props.modelValue,
@@ -77,7 +80,7 @@ const rules = {
   validRssLink: (value: string) => {
     const rssLinkPattern =
       /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})(\/[\w .-]*)*\/?$/;
-    return rssLinkPattern.test(value) || "请输入有效的 RSS 链接";
+    return rssLinkPattern.test(value);
   },
 };
 
@@ -116,6 +119,9 @@ const createMedia = async () => {
       showSnackbar("内容源创建成功", "success");
       setTimeout(() => {
         close();
+        router.push(route.fullPath).then(() => {
+          window.location.reload();
+        });
       }, 1000); // 延迟1秒后关闭对话框
     } else {
       showSnackbar("内容源创建失败", "error");

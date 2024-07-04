@@ -12,7 +12,7 @@ import ACCESS_ENUM from "@/access/accessEnum";
 import NotFoundPage from "@/views/NotFoundPage.vue";
 
 export const routes: Array<RouteRecordRaw> = [
-  { path: '/', redirect: '/followingTopics' },
+  { path: "/", redirect: "/latest" }, // 初始状态下重定向到 /latest
   {
     path: "/",
     name: "主页",
@@ -30,13 +30,13 @@ export const routes: Array<RouteRecordRaw> = [
         component: AllTopicsPage,
       },
       {
-        path: 'topic/:topicId',
-        name: 'TopicDetail',
+        path: "topic/:topicId",
+        name: "TopicDetail",
         component: TopicDetail,
       },
       {
-        path: 'news/:newsId',
-        name: 'NewsDetail',
+        path: "news/:newsId",
+        name: "NewsDetail",
         component: NewsDetail,
       },
       {

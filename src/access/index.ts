@@ -16,11 +16,22 @@ router.beforeEach(async (to, from, next) => {
     loginUser = loginUserStore.loginUser;
   }
 
+  // 如果尝试访问主页路径 "/"
+  if (to.path === "/") {
+    if (loginUser && loginUser.userRole !== ACCESS_ENUM.NOT_LOGIN) {
+      next("/followingTopics"); // 登录状态下跳转到 /followingTopics
+      return;
+    } else {
+      next("/latest"); // 未登录状态下跳转到 /latest
+      return;
+    }
+  }
+
   // 检查是否尝试访问登录页面
-  if (to.path === '/auth/login') {
+  if (to.path === "/auth/login") {
     // 如果用户已经登录，跳转到主页
     if (loginUser && loginUser.userRole !== ACCESS_ENUM.NOT_LOGIN) {
-      next('/');
+      next("/");
       return;
     }
   }

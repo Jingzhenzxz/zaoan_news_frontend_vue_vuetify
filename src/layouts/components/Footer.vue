@@ -2,7 +2,7 @@
   <v-footer class="footer" absolute>
     <v-col class="text-center">
       <span class="footer-text">
-        &copy; {{ new Date().getFullYear() }} 午安资讯</span
+        &copy; {{ new Date().getFullYear() }} 早安资讯</span
       >
     </v-col>
   </v-footer>

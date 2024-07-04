@@ -23,7 +23,9 @@
             <v-btn flat class="mt-4" @click="openUpdateDialog('all')">
               更新资料
             </v-btn>
-            <v-btn flat color="pink" @click="logout" class="mt-4 mx-2">退出登录</v-btn>
+            <v-btn flat color="pink" @click="logout" class="mt-4 mx-2"
+              >退出登录</v-btn
+            >
             <!-- <v-btn flat color="pink" @click="deleteAccount" class="mt-4">注销账户</v-btn> -->
           </v-col>
         </v-row>
@@ -84,6 +86,11 @@ const openUpdateDialog = (field: "username" | "email" | "all") => {
 const handleUpdateSuccess = (message: string) => {
   successSnackbar.value = true;
   successMessage.value = message;
+  setTimeout(() => {
+    router.push("/user").then(() => {
+      window.location.reload();
+    });
+  }, 500); // 在 0.5 秒后刷新页面
 };
 
 /**
@@ -93,11 +100,7 @@ const logout = async () => {
   try {
     await userLogoutUsingPost();
     loginUserStore.setLoginUser({ username: "未登录" });
-    successSnackbar.value = true;
-    successMessage.value = "退出登录成功";
-    setTimeout(() => {
-      router.push("/auth/login");
-    }, 2000); // 延迟2秒后跳转
+    router.push("/auth/login");
   } catch (err) {
     errorSnackbar.value = true;
     errorMessage.value = "退出登录失败，" + err.message;

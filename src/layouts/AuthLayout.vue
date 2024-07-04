@@ -1,9 +1,9 @@
 <template>
   <div class="auth-layout">
     <v-app-bar flat>
-      <v-toolbar-title>
-        <v-icon large class="mr-2">mdi-newspaper</v-icon>
-        午安资讯
+      <v-toolbar-title @click="goHome" class="toolbar-title-style">
+        <v-icon large class="mr-2">mdi-sun-wireless</v-icon>
+        早安资讯
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </v-app-bar>
@@ -16,6 +16,13 @@
 
 <script setup lang="ts">
 import Footer from '@/layouts/components/Footer.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
+
+const goHome = () => {
+  router.push('/');
+};
 </script>
 
 <style scoped>
@@ -37,4 +44,7 @@ import Footer from '@/layouts/components/Footer.vue';
   margin-bottom: 16px;
 }
 
+.toolbar-title-style {
+  cursor: pointer; /* 添加手型鼠标指针 */
+}
 </style>

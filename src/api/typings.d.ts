@@ -388,6 +388,7 @@ declare namespace API {
 
   type UserAddRequest = {
     email?: string;
+    password?: string;
     userAvatar?: string;
     userRole?: string;
     username?: string;
@@ -444,7 +445,9 @@ declare namespace API {
   };
 
   type UserUpdateRequest = {
+    email?: string;
     id?: number;
+    password?: string;
     userAvatar?: string;
     userProfile?: string;
     userRole?: string;

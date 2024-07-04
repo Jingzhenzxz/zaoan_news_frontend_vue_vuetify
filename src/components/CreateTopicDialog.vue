@@ -37,6 +37,7 @@ import {
   addTopicUsingPost,
 } from "@/api/topicController";
 import { API } from "@/api/types";
+import { useRoute, useRouter } from "vue-router";
 
 const props = defineProps<{ modelValue: boolean }>();
 
@@ -49,6 +50,8 @@ const snackbar = ref({
   message: "",
   color: "success",
 });
+const router = useRouter();
+const route = useRoute();
 
 watch(
   () => props.modelValue,
@@ -91,6 +94,9 @@ const createTopic = async () => {
       showSnackbar("话题创建成功", "success");
       setTimeout(() => {
         close();
+        router.push(route.fullPath).then(() => {
+          window.location.reload();
+        });
       }, 1000); // 延迟1秒后关闭对话框
     } else {
       showSnackbar("话题创建失败", "error");

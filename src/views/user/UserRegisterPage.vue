@@ -187,11 +187,11 @@ const handleSubmit = async () => {
 
   if (res.data.code === 0) {
     successSnackbar.value = true;
-    successMessage.value = "注册成功";
+    successMessage.value = "注册成功，正在跳转";
     // 延迟路由跳转
     setTimeout(() => {
       router.push({
-        path: "/login",
+        path: "/auth/login",
         replace: true,
       });
     }, 2000); // 延迟2秒（与Snackbar的timeout一致）

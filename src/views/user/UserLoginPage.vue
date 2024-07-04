@@ -86,6 +86,7 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { userLoginUsingPost } from "@/api/userController";
 import { useLoginUserStore } from "@/store/userStore";
+import ACCESS_ENUM from "@/access/accessEnum";
 
 const loginUserStore = useLoginUserStore();
 const router = useRouter();
@@ -113,11 +114,15 @@ const handleSubmit = async () => {
     successMessage.value = "登录成功，正在跳转";
     // 延迟路由跳转
     setTimeout(() => {
+      const redirectPath =
+        loginUserStore.loginUser.userRole !== ACCESS_ENUM.NOT_LOGIN
+          ? "/followingTopics"
+          : "/latest";
       router.push({
-        path: "/",
+        path: redirectPath,
         replace: true,
       });
-    }, 1000); // 延迟2秒（与Snackbar的timeout一致）
+    }, 1000); // 延迟1秒（与Snackbar的timeout一致）
   } else {
     errorSnackbar.value = true;
     errorMessage.value = "登录失败，" + res.data.message;
