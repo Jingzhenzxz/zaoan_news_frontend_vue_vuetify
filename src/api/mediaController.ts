@@ -62,6 +62,36 @@ export async function getMediaVoByIdUsingGet(
   });
 }
 
+/** getMediaByLink POST /api/media/getByLink */
+export async function getMediaByLinkUsingPost(
+  body: API.MediaQueryRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseMedia_>('/api/media/getByLink', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
+/** getMediaVOByLink POST /api/media/getByLink/vo */
+export async function getMediaVoByLinkUsingPost(
+  body: API.MediaQueryRequest,
+  options?: { [key: string]: any },
+) {
+  return request<API.BaseResponseMediaVO_>('/api/media/getByLink/vo', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
+
 /** getMediaByNameAndLink POST /api/media/getByNameAndLink */
 export async function getMediaByNameAndLinkUsingPost(
   body: API.MediaQueryRequest,

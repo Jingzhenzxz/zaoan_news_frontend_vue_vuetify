@@ -38,8 +38,8 @@
 <script lang="ts" setup>
 import { ref, watch } from "vue";
 import {
-  getMediaVoByNameAndLinkUsingPost,
   createMediaUsingPost,
+  getMediaVoByLinkUsingPost,
 } from "@/api/mediaController";
 import { API } from "@/api/types";
 import { useRoute, useRouter } from "vue-router";
@@ -102,8 +102,7 @@ const createMedia = async () => {
     return;
   }
 
-  const response = await getMediaVoByNameAndLinkUsingPost({
-    name: trimmedMediaName,
+  const response = await getMediaVoByLinkUsingPost({
     rssLink: newMediaLink.value,
   });
 
@@ -124,7 +123,7 @@ const createMedia = async () => {
         });
       }, 1000); // 延迟1秒后关闭对话框
     } else {
-      showSnackbar("内容源创建失败", "error");
+      showSnackbar("内容源创建失败：" + addResponse.data.message, "error");
     }
   }
 };

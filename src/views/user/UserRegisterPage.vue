@@ -187,7 +187,7 @@ const handleSubmit = async () => {
 
   if (res.data.code === 0) {
     successSnackbar.value = true;
-    successMessage.value = "注册成功，正在跳转";
+    successMessage.value = "注册成功，正在跳转……";
     // 延迟路由跳转
     setTimeout(() => {
       router.push({

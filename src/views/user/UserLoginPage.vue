@@ -111,7 +111,7 @@ const handleSubmit = async () => {
   if (res.data.code === 0) {
     await loginUserStore.fetchLoginUser();
     successSnackbar.value = true;
-    successMessage.value = "登录成功，正在跳转";
+    successMessage.value = "登录成功，正在跳转……";
     // 延迟路由跳转
     setTimeout(() => {
       const redirectPath =
